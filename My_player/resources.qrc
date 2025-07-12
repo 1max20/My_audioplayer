@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>next.png</file>
+        <file>pause.png</file>
+        <file>play.png</file>
+        <file>previous.png</file>
+        <file>music.png</file>
+        <file>repeat.png</file>
+        <file>repeat-one.png</file>
+        <file>shuffle.png</file>
+        <file>volume-medium.png</file>
+        <file>volume-mute2.png</file>
+        <file>Main_icon.png</file>
+        <file>Main_icon2.png</file>
+        <file>Main_icon.ico</file>
+        <file>Main_icon.rc</file>
+    </qresource>
+</RCC>

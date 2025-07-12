@@ -1,0 +1,38 @@
+{
+	"BUILD_DIR" : "A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/My_player_autogen",
+	"CMAKE_BINARY_DIR" : "A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "A:/Pet_project/My_player/My_player",
+	"CMAKE_SOURCE_DIR" : "A:/Pet_project/My_player/My_player",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/My_player_autogen/include",
+	"INPUTS" : 
+	[
+		"A:/Pet_project/My_player/My_player/Main_icon2.png",
+		"A:/Pet_project/My_player/My_player/Main_icon.rc",
+		"A:/Pet_project/My_player/My_player/music.png",
+		"A:/Pet_project/My_player/My_player/repeat.png",
+		"A:/Pet_project/My_player/My_player/pause.png",
+		"A:/Pet_project/My_player/My_player/repeat-one.png",
+		"A:/Pet_project/My_player/My_player/next.png",
+		"A:/Pet_project/My_player/My_player/volume-medium.png",
+		"A:/Pet_project/My_player/My_player/previous.png",
+		"A:/Pet_project/My_player/My_player/Main_icon.png",
+		"A:/Pet_project/My_player/My_player/Main_icon.ico",
+		"A:/Pet_project/My_player/My_player/shuffle.png",
+		"A:/Pet_project/My_player/My_player/volume-mute2.png",
+		"A:/Pet_project/My_player/My_player/play.png"
+	],
+	"LOCK_FILE" : "A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/My_player_autogen.dir/AutoRcc_resources_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "--no-zstd", "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "C:/Qt/6.9.1/mingw_64/bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/My_player_autogen.dir/AutoRcc_resources_EWIEGA46WW_Used.txt",
+	"SOURCE" : "A:/Pet_project/My_player/My_player/resources.qrc",
+	"USE_BETTER_GRAPH" : true,
+	"VERBOSITY" : 0
+}
