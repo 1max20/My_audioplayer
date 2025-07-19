@@ -1,14 +1,14 @@
 # ninja log v5
-12	804	7746593074731302	My_player_autogen/timestamp	3a06b13a246aae17
-12	804	7746593074731302	My_player_autogen/mocs_compilation.cpp	3a06b13a246aae17
-12	804	7746593074731302	A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/My_player_autogen/timestamp	3a06b13a246aae17
-12	804	7746593074731302	A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/My_player_autogen/mocs_compilation.cpp	3a06b13a246aae17
-810	1000	7746593076978183	My_player_autogen/EWIEGA46WW/qrc_resources.cpp	94b208a37d307450
-810	1000	7746593076978183	A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/My_player_autogen/EWIEGA46WW/qrc_resources.cpp	94b208a37d307450
-1011	1068	7746593077849766	CMakeFiles/My_player.dir/Main_icon.rc.obj	7d3eb7a0d1b46d53
-1008	3475	7746593101894571	CMakeFiles/My_player.dir/clickslider.cpp.obj	2bdca28a06a4f97e
-1003	3916	7746593106305593	CMakeFiles/My_player.dir/main.cpp.obj	76f443b1c4f15389
-1001	3948	7746593106625641	CMakeFiles/My_player.dir/My_player_autogen/mocs_compilation.cpp.obj	aa358eafc245dc4b
-1005	5184	7746593118879348	CMakeFiles/My_player.dir/mainwindow.cpp.obj	46d64bc05b1d50d7
-1014	7223	7746593139358836	CMakeFiles/My_player.dir/My_player_autogen/EWIEGA46WW/qrc_resources.cpp.obj	bfc9b1db9fb43c7b
-7224	7435	7746593141457817	My_player.exe	1f042988bd23714d
+11	770	7746598381085236	My_player_autogen/timestamp	3a06b13a246aae17
+11	770	7746598381085236	My_player_autogen/mocs_compilation.cpp	3a06b13a246aae17
+11	770	7746598381085236	A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/My_player_autogen/timestamp	3a06b13a246aae17
+11	770	7746598381085236	A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/My_player_autogen/mocs_compilation.cpp	3a06b13a246aae17
+777	967	7746598383362572	My_player_autogen/EWIEGA46WW/qrc_resources.cpp	94b208a37d307450
+777	967	7746598383362572	A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/My_player_autogen/EWIEGA46WW/qrc_resources.cpp	94b208a37d307450
+976	1033	7746598383987627	CMakeFiles/My_player.dir/Main_icon.rc.obj	7d3eb7a0d1b46d53
+974	3398	7746598407703840	CMakeFiles/My_player.dir/clickslider.cpp.obj	2bdca28a06a4f97e
+967	3883	7746598412498095	CMakeFiles/My_player.dir/My_player_autogen/mocs_compilation.cpp.obj	aa358eafc245dc4b
+969	3942	7746598413168282	CMakeFiles/My_player.dir/main.cpp.obj	76f443b1c4f15389
+971	5203	7746598425695296	CMakeFiles/My_player.dir/mainwindow.cpp.obj	46d64bc05b1d50d7
+979	7194	7746598445607768	CMakeFiles/My_player.dir/My_player_autogen/EWIEGA46WW/qrc_resources.cpp.obj	bfc9b1db9fb43c7b
+7194	7406	7746598447746569	My_player.exe	1f042988bd23714d
