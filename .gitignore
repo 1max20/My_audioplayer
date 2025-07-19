@@ -1,7 +1,12 @@
-#Игнорируем Qt файлы
+#Игнорируем Qt-.pro файлы
 *.pro
 *.pro.user
 
+# Игнорировать всё в build
+/My_player/build/*
 
-# Игнорируем Debug сборку, но оставляем Release
-build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/
+# Но оставить Release-сборку
+!/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/
+
+# Игнорировать отдельно Debug-сборку
+/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/
