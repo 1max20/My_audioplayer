@@ -2,11 +2,5 @@
 *.pro
 *.pro.user
 
-# Игнорировать всё в build
-/My_player/build/*
-
-# Но оставить Release-сборку
-!/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/
-
 # Игнорировать отдельно Debug-сборку
 /My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/
