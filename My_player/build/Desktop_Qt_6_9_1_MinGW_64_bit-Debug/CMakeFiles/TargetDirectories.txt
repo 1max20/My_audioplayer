@@ -1,9 +1,0 @@
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/My_player.dir
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/list_install_components.dir
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/install.dir
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/My_player_autogen_timestamp_deps.dir
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/CMakeFiles/My_player_autogen.dir
