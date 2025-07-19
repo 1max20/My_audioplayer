@@ -1,0 +1,9 @@
+#Игнорируем Qt файлы
+*.pro
+*.pro.user
+
+# Игнорируем build-папку целиком, но включаем Release
+build/
+
+# Игнорируем Debug сборку, но оставляем Release
+build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/
