@@ -1,6 +1,3 @@
 #Игнорируем Qt-.pro файлы
 *.pro
 *.pro.user
-
-# Игнорировать отдельно Debug-сборку
-/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/
