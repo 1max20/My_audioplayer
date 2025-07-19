@@ -1,0 +1,14 @@
+# ninja log v5
+13	835	7746540174233440	My_player_autogen/timestamp	dea437b9a9897086
+13	835	7746540174233440	My_player_autogen/mocs_compilation.cpp	dea437b9a9897086
+13	835	7746540174233440	A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/My_player_autogen/timestamp	dea437b9a9897086
+13	835	7746540174233440	A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/My_player_autogen/mocs_compilation.cpp	dea437b9a9897086
+841	1121	7746540177452654	My_player_autogen/EWIEGA46WW/qrc_resources.cpp	261c92ae5576badb
+841	1121	7746540177452654	A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/My_player_autogen/EWIEGA46WW/qrc_resources.cpp	261c92ae5576badb
+1132	1266	7746540179032407	CMakeFiles/My_player.dir/Main_icon.rc.obj	48d35c9811d12b38
+1129	4410	7746540210411653	CMakeFiles/My_player.dir/clickslider.cpp.obj	3361fa37d92fbd9e
+1121	4946	7746540215679910	CMakeFiles/My_player.dir/My_player_autogen/mocs_compilation.cpp.obj	635a45c6146410d
+1124	5017	7746540216461250	CMakeFiles/My_player.dir/main.cpp.obj	2175ba8a2444f87
+1126	5689	7746540223220223	CMakeFiles/My_player.dir/mainwindow.cpp.obj	b90e03ff294129d5
+1211	8178	7746540248122528	CMakeFiles/My_player.dir/My_player_autogen/EWIEGA46WW/qrc_resources.cpp.obj	f14c999a52e80d2f
+8178	8701	7746540253250341	My_player.exe	d36f5d67cf04f7a
