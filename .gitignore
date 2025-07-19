@@ -1,6 +1,21 @@
-#Игнорируем Qt-.pro файлы
+#Игнорируем Qt файлы
 *.pro
 *.pro.user
+*.user
+*.autosave
+*.log
+*.exe
+*.o
+*.obj
+*.dll
+*.pdb
+*.ilk
+*.qtc_clangd/
+*.idx
+
+# Системные файлы
+.DS_Store
+Thumbs.db
 
 # Игнорировать всё в build
 /My_player/build/*
