@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
             socket.flush();
             socket.waitForBytesWritten(100);
         }
-        return 0;  // Завершить второй экземпляр
+        return 0;
     }
 
     // Иначе — это первый экземпляр, создаём сервер
