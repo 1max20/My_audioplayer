@@ -6,10 +6,13 @@
 #include <QFileInfo>
 #include <QRandomGenerator>
 #include <QPixmap>
+#include <QImage>
+#include <QMediaMetaData>
 #include <QFileInfo>
 #include <chrono>
 #include <iomanip>
 #include <sstream>
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -65,11 +68,17 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Sliders
     player->setAudioOutput(audioOutput);
-    audioOutput->setVolume(ui->volumeSlider->value());
+    ui->volumeSlider->setRange(0, 100);
+    ui->volumeSlider->setValue(20);
+    audioOutput->setVolume(0.2);
+    previousVolume = 20;
+
+    connect(player, &QMediaPlayer::metaDataChanged, this, &MainWindow::updateAlbumCover); // альбом картинка
     connect(player, &QMediaPlayer::positionChanged, this, &MainWindow::positionChanged);
     connect(player, &QMediaPlayer::durationChanged, this, &MainWindow::durationChanged);
     connect(ui->positionSlider, SIGNAL(sliderClicked(int)), this, SLOT(on_positionSlider_sliderMoved(int)));
     connect(ui->volumeSlider, SIGNAL(sliderClicked(int)), this, SLOT(on_volumeSlider_sliderMoved(int)));
+    setDefaultAlbumCover();
 
 }
 
@@ -110,14 +119,25 @@ void MainWindow::on_actionOpen_playlist_triggered()
 
 void MainWindow::on_actionOpen_file_triggered()
 {
-    QString FileName = QFileDialog::getOpenFileName(this,tr("Select Audio"),"",tr("Audio Files (*.mp3 *.wav)"));
-    player->setSource(QUrl::fromLocalFile(FileName));
+    const QString fileName = QFileDialog::getOpenFileName(
+        this,
+        tr("Select Audio"),
+        {},
+        tr("Audio Files (*.mp3 *.wav)")
+        );
 
-    QFileInfo File(FileName);
+    if (fileName.isEmpty()) {
+        return;
+    }
 
-    ui->File_Name->setText(File.fileName());
+    setDefaultAlbumCover();
 
+    player->setSource(QUrl::fromLocalFile(fileName));
+    player->play();
 
+    const QFileInfo fileInfo(fileName);
+    ui->File_Name->setText(fileInfo.fileName());
+    ui->btnPlayPause->setIcon(QIcon(":/icons/pause.png"));
 }
 
 void MainWindow::playFile(int index)
@@ -125,14 +145,16 @@ void MainWindow::playFile(int index)
     if (index < 0 || index >= audioFilePaths.size())
         return;
 
+    setDefaultAlbumCover();
+
     player->setSource(QUrl::fromLocalFile(audioFilePaths[index]));
     player->play();
 
     QFileInfo file(audioFilePaths[index]);
+
     ui->File_Name->setText(file.fileName());
     ui->btnPlayPause->setIcon(QIcon(":/icons/pause.png"));
     ui->tableView->selectRow(index);
-    updateAlbumCover(audioFilePaths[index]);
 }
 
 
@@ -144,7 +166,7 @@ void MainWindow::on_tableView_activated(const QModelIndex &index)
 }
 
 
-//buttons
+//Кнопки
 void MainWindow::on_btnPlayPause_clicked()
 {
     if (player->playbackState() == QMediaPlayer::PlayingState)
@@ -229,9 +251,11 @@ void MainWindow::on_btn_mute_clicked()
     }
 }
 
-//volumeSlider
+//слайдер звука
 void MainWindow::on_volumeSlider_sliderMoved(int value)
 {
+    audioOutput->setVolume(static_cast<float>(value) / 100.0f);
+    ui->volumeSlider->setToolTip(QString("%1%").arg(value));
     if (value <= 0)
     {
         audioOutput->setMuted(true);
@@ -248,7 +272,7 @@ void MainWindow::on_volumeSlider_sliderMoved(int value)
 }
 
 
-// position slider and time
+// слайдер позиции
 void MainWindow::on_positionSlider_sliderMoved(int value)
 {
     player->setPosition(value);
@@ -298,7 +322,7 @@ void MainWindow::durationChanged(qint64 dur)
 }
 
 
-//chossen file from win_files
+//выбор файла
 void MainWindow::loadFileFromPath(const QString &path)
 {
     QFileInfo fileInfo(path);
@@ -331,14 +355,27 @@ void MainWindow::loadFileFromPath(const QString &path)
     }
 }
 
-void MainWindow::updateAlbumCover(const QString &audioFilePath)
+// картинка альбома
+void MainWindow::updateAlbumCover()
 {
-    QPixmap cover;
-    cover.load(":/icons/Main_icon2.png");
+    const QMediaMetaData metadata = player->metaData();
+    QImage cover = metadata.value(QMediaMetaData::CoverArtImage).value<QImage>();
+
+    if (cover.isNull()) {
+        cover = metadata.value(QMediaMetaData::ThumbnailImage).value<QImage>();
+    }
+    if (cover.isNull()) {
+        setDefaultAlbumCover();
+        return;
+    }
 
     ui->albumCoverLabel->setPixmap(
-        cover.scaled(ui->albumCoverLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation)
-        );
+        QPixmap::fromImage(cover).scaled(ui->albumCoverLabel->size(), Qt::KeepAspectRatio,Qt::SmoothTransformation));
 }
 
+void MainWindow::setDefaultAlbumCover()
+{
+    const QPixmap defaultCover(":/icons/Main_icon2.png");
 
+    ui->albumCoverLabel->setPixmap(defaultCover.scaled(ui->albumCoverLabel->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
+}

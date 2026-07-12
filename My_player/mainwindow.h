@@ -10,6 +10,10 @@
 #include <QFileDialog>
 #include <QStyle>
 #include <QStandardItemModel>
+#include <QImage>
+#include <QPixmap>
+#include <QMediaMetaData>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -56,7 +60,8 @@ private:
     QStandardItemModel *playlistModel;
     void playFile(int index);
     RepeatMode repeatMode = RepeatMode::RepeatOne;
-    void updateAlbumCover(const QString &audioFilePath);
+    void updateAlbumCover();
+    void setDefaultAlbumCover();
 
 };
 

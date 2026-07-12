@@ -1,5 +1,0 @@
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/CMakeFiles/MyPlayer.dir
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/CMakeFiles/edit_cache.dir
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/CMakeFiles/rebuild_cache.dir
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/CMakeFiles/MyPlayer_autogen_timestamp_deps.dir
-A:/Pet_project/My_player/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/CMakeFiles/MyPlayer_autogen.dir

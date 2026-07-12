@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
             QDataStream in(client);
             QString newFilePath;
             in >> newFilePath;
-            w.loadFileFromPath(newFilePath);  // Загружаем новый файл
+            w.loadFileFromPath(newFilePath);
         }
         client->deleteLater();
     });

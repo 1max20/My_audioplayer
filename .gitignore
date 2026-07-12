@@ -1,12 +1,31 @@
-#Игнорируем Qt файлы
-*.pro
+# Qt Creator
+*.user
 *.pro.user
 
-# Игнорировать всё в build
-/My_player/build/*
+# Build directories
+build/
+Build/
+out/
+install/
 
-# Но оставить Release-сборку
-!/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Release/
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+CTestTestfile.cmake
 
-# Игнорировать отдельно Debug-сборку
-/My_player/build/Desktop_Qt_6_9_1_MinGW_64_bit-Debug/
+# Ninja
+.ninja_*
+build.ninja
+
+# Qt Autogen
+*_autogen/
+
+# IDE
+.vs/
+.vscode/
+.idea/
+
+# Logs
+*.log
