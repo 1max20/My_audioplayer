@@ -12,6 +12,8 @@
 #include <chrono>
 #include <iomanip>
 #include <sstream>
+#include <QStatusBar>
+#include <QMessageBox>
 
 
 
@@ -43,26 +45,17 @@ MainWindow::MainWindow(QWidget *parent)
             });
 
     //Auto_next_track
-    connect(player, &QMediaPlayer::mediaStatusChanged, this, [this](QMediaPlayer::MediaStatus status)
+    connect(player, &QMediaPlayer::mediaStatusChanged,this, [this](QMediaPlayer::MediaStatus status)
             {
+                if (status == QMediaPlayer::LoadedMedia ||
+                    status == QMediaPlayer::BufferedMedia)
+                {
+                    playbackErrorCount = 0;
+                }
+
                 if (status == QMediaPlayer::EndOfMedia)
                 {
-                    switch (repeatMode)
-                    {
-                    case RepeatMode::RepeatOne:
-                        playFile(currentIndex);
-                        break;
-
-                    case RepeatMode::RepeatAll:
-                        currentIndex = (currentIndex + 1) % audioFilePaths.size();
-                        playFile(currentIndex);
-                        break;
-
-                    case RepeatMode::Shuffle:
-                        currentIndex = QRandomGenerator::global()->bounded(audioFilePaths.size());
-                        playFile(currentIndex);
-                        break;
-                    }
+                    playNextTrack();
                 }
             });
 
@@ -79,6 +72,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->positionSlider, SIGNAL(sliderClicked(int)), this, SLOT(on_positionSlider_sliderMoved(int)));
     connect(ui->volumeSlider, SIGNAL(sliderClicked(int)), this, SLOT(on_volumeSlider_sliderMoved(int)));
     setDefaultAlbumCover();
+
+    connect(player, &QMediaPlayer::errorOccurred, this, &MainWindow::onPlaybackError);// ошибки
 
 }
 
@@ -130,6 +125,10 @@ void MainWindow::on_actionOpen_file_triggered()
         return;
     }
 
+    playbackErrorCount = 0;
+
+    loadFileFromPath(fileName);
+
     setDefaultAlbumCover();
 
     player->setSource(QUrl::fromLocalFile(fileName));
@@ -138,12 +137,18 @@ void MainWindow::on_actionOpen_file_triggered()
     const QFileInfo fileInfo(fileName);
     ui->File_Name->setText(fileInfo.fileName());
     ui->btnPlayPause->setIcon(QIcon(":/icons/pause.png"));
+
+    playbackSource = PlaybackSource::SingleFile;
+    playbackErrorCount = 0;
 }
 
 void MainWindow::playFile(int index)
 {
     if (index < 0 || index >= audioFilePaths.size())
         return;
+
+    playbackSource = PlaybackSource::Playlist;
+    currentIndex = index;
 
     setDefaultAlbumCover();
 
@@ -184,17 +189,30 @@ void MainWindow::on_btnPlayPause_clicked()
 
 void MainWindow::on_btnNext_clicked()
 {
-    if (currentIndex < audioFilePaths.size() - 1)
+    if (audioFilePaths.isEmpty())
+        return;
+
+    playbackErrorCount = 0;
+
+    if (repeatMode == RepeatMode::Shuffle &&audioFilePaths.size() > 1)
     {
-        currentIndex++;
-        playFile(currentIndex);
+        int newIndex = currentIndex;
+
+        while (newIndex == currentIndex)
+        {
+            newIndex =
+                QRandomGenerator::global()->bounded(audioFilePaths.size());
+        }
+
+        currentIndex = newIndex;
+    }
+    else
+    {
+        currentIndex =
+            (currentIndex + 1) % audioFilePaths.size();
     }
 
-    if (repeatMode == RepeatMode::Shuffle)
-    {
-        currentIndex = QRandomGenerator::global()->bounded(audioFilePaths.size());
-        playFile(currentIndex);
-    }
+    playFile(currentIndex);
 }
 
 void MainWindow::on_btnPrev_clicked()
@@ -378,4 +396,91 @@ void MainWindow::setDefaultAlbumCover()
     const QPixmap defaultCover(":/icons/Main_icon2.png");
 
     ui->albumCoverLabel->setPixmap(defaultCover.scaled(ui->albumCoverLabel->size(),Qt::KeepAspectRatio,Qt::SmoothTransformation));
+}
+
+// Обработка ошибки
+
+void MainWindow::onPlaybackError(
+    QMediaPlayer::Error error,
+    const QString &errorString)
+{
+    if (error == QMediaPlayer::NoError)
+        return;
+    const QString filePath = player->source().toLocalFile();
+    const QString fileName = QFileInfo(filePath).fileName();
+    const QString reason = errorString.isEmpty()? tr("Неизвестная ошибка воспроизведения") : errorString;
+
+    player->stop();
+
+    if (playbackSource == PlaybackSource::SingleFile)
+    {
+        QMessageBox::warning(this, tr("Ошибка воспроизведения"),tr("Не удалось воспроизвести файл:\n%1\n\nПричина:\n%2").arg(fileName.isEmpty() ? filePath : fileName, reason));
+        return;
+    }
+
+    if (audioFilePaths.isEmpty())
+        return;
+
+    ++playbackErrorCount;
+
+    statusBar()->showMessage(
+        tr("Не удалось воспроизвести \"%1\". "
+           "Переход к следующему треку.")
+            .arg(fileName),
+        5000);
+
+    if (playbackErrorCount >= audioFilePaths.size())
+    {
+        playbackErrorCount = 0;
+        player->stop();
+
+        QMessageBox::warning(this, tr("Ошибка плейлиста"), tr("Не удалось воспроизвести ни один файл из плейлиста."));
+        return;
+    }
+
+    skipBrokenTrack();
+}
+void MainWindow::playNextTrack()
+{
+    if (audioFilePaths.isEmpty())
+        return;
+
+    switch (repeatMode)
+    {
+    case RepeatMode::RepeatOne:playFile(currentIndex);
+        break;
+
+    case RepeatMode::RepeatAll:currentIndex = (currentIndex + 1) % audioFilePaths.size();
+        playFile(currentIndex);
+        break;
+
+    case RepeatMode::Shuffle:
+        if (audioFilePaths.size() == 1)
+        {
+            currentIndex = 0;
+        }
+        else
+        {
+            int newIndex = currentIndex;
+
+            while (newIndex == currentIndex)
+            {
+                newIndex =QRandomGenerator::global()->bounded(audioFilePaths.size());
+            }
+
+            currentIndex = newIndex;
+        }
+
+        playFile(currentIndex);
+        break;
+    }
+}
+
+void MainWindow::skipBrokenTrack()
+{
+    if (audioFilePaths.isEmpty())
+        return;
+
+    currentIndex = (currentIndex + 1) % audioFilePaths.size();
+    playFile(currentIndex);
 }

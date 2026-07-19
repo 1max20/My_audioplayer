@@ -47,6 +47,8 @@ private slots:
     void on_tableView_activated(const QModelIndex &index);
     void on_btn_Replay_clicked();
     void on_btn_mute_clicked();
+    void onPlaybackError(QMediaPlayer::Error error, const QString &errorString); // ошибки воспроизвидениея
+    void skipBrokenTrack();
 
 private:
     Ui::MainWindow *ui;
@@ -56,12 +58,29 @@ private:
     QStringList audioFilePaths;
     qint64 Mduar;
     int currentIndex;
-    QString formatChronoTime(qint64 msTotal);
+
     QStandardItemModel *playlistModel;
+
+    enum class PlaybackSource
+    {
+        SingleFile,
+        Playlist
+    };
+
+    PlaybackSource playbackSource = PlaybackSource::SingleFile;
+
+
+    int playbackErrorCount = 0;
+    bool skippingBrokenTrack = false;
+
+    QString formatChronoTime(qint64 msTotal);
+
     void playFile(int index);
+    void playNextTrack();
     RepeatMode repeatMode = RepeatMode::RepeatOne;
     void updateAlbumCover();
     void setDefaultAlbumCover();
+
 
 };
 
